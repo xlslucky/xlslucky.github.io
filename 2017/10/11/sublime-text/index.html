@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="sublime 编辑器下载sublime 官网 plugin在线安装package control 插件 按ctrl(command)+`调出console  12345#sublime text 3import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_p">
+<meta name="description" content="sublime 编辑器下载sublime 官网 plugin在线安装package control 插件 按ctrl(command)+`调出console  12345# sublime text 3import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sublime-text">
 <meta property="og:url" content="http://yoursite.com/2017/10/11/sublime-text/index.html">
 <meta property="og:site_name" content="我的笔记">
-<meta property="og:description" content="sublime 编辑器下载sublime 官网 plugin在线安装package control 插件 按ctrl(command)+`调出console  12345#sublime text 3import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_p">
+<meta property="og:description" content="sublime 编辑器下载sublime 官网 plugin在线安装package control 插件 按ctrl(command)+`调出console  12345# sublime text 3import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-11T11:10:57.000Z">
+<meta property="og:updated_time" content="2017-10-12T01:56:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sublime-text">
-<meta name="twitter:description" content="sublime 编辑器下载sublime 官网 plugin在线安装package control 插件 按ctrl(command)+`调出console  12345#sublime text 3import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_p">
+<meta name="twitter:description" content="sublime 编辑器下载sublime 官网 plugin在线安装package control 插件 按ctrl(command)+`调出console  12345# sublime text 3import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_">
 
 
 
@@ -247,7 +247,7 @@
   
   
 
-  <article class="post post-type-editor" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
@@ -292,6 +292,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/editor/" itemprop="url" rel="index">
+                    <span itemprop="name">editor</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -323,7 +345,7 @@
 <h2 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h2><h4 id="在线安装package-control-插件"><a href="#在线安装package-control-插件" class="headerlink" title="在线安装package control 插件"></a>在线安装package control 插件</h4><blockquote>
 <p>按ctrl(command)+`调出console</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">sublime text 3</span></div><div class="line">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash">sublime text 2</span></div><div class="line">import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> sublime text 3</span></div><div class="line">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> sublime text 2</span></div><div class="line">import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')</div></pre></td></tr></table></figure>
 <h4 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h4><blockquote>
 <p>ctrl(command) + shift + p</p>
 </blockquote>
@@ -462,6 +484,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
