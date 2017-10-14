@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。每一种解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如运行在浏览器中的JS的用途是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJ">
+<meta name="description" content="参考阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http://nqdeng.github.io/7-days-nodejs/  概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析">
 <meta name="keywords" content="nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nodejs 学习笔记">
 <meta property="og:url" content="http://yoursite.com/2017/10/13/nodejs/index.html">
 <meta property="og:site_name" content="Xlslucky&#39;s Blog">
-<meta property="og:description" content="概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。每一种解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如运行在浏览器中的JS的用途是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJ">
+<meta property="og:description" content="参考阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http://nqdeng.github.io/7-days-nodejs/  概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-14T03:53:33.000Z">
+<meta property="og:updated_time" content="2017-10-14T06:07:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nodejs 学习笔记">
-<meta name="twitter:description" content="概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。每一种解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如运行在浏览器中的JS的用途是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJ">
+<meta name="twitter:description" content="参考阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http://nqdeng.github.io/7-days-nodejs/  概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析">
 
 
 
@@ -303,6 +303,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -324,7 +346,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  352 字
+                  595 字
                 </span>
               
 
@@ -340,7 +362,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -361,13 +383,22 @@
       
 
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。<br>每一种解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如运行在浏览器中的JS的用途是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJS中的JS的用途是操作磁盘文件或搭建HTTP服务器，NodeJS就相应提供了fs、http等内置对象。</p>
+        <blockquote>
+<p>参考<br>阮一峰 CommonJS规范 <a href="http://javascript.ruanyifeng.com/nodejs/module.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/nodejs/module.html</a><br>7天学会NodeJs <a href="http://nqdeng.github.io/7-days-nodejs/" target="_blank" rel="external">http://nqdeng.github.io/7-days-nodejs/</a></p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。<br>每一种解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如运行在浏览器中的JS的用途是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJS中的JS的用途是操作磁盘文件或搭建HTTP服务器，NodeJS就相应提供了fs、http等内置对象。</p>
 <p>Node 应用由模块组成，采用 CommonJS 模块规范。<br>每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。</p>
-<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h4 id="模块导出"><a href="#模块导出" class="headerlink" title="模块导出"></a>模块导出</h4><p><code>module.exports</code>和<code>exports</code>都是导出模块</p>
-<p><code>module.exports</code>属性表示当前模块对外输出的接口，其他文件加载该模块，实际上就是读取<code>module.exports</code>变量。</p>
-<p>Node为每个模块提供一个<code>exports</code>变量，指向<code>module.exports</code>。这等同在每个模块头部，有一行这样的命令。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports;</div></pre></td></tr></table></figure></p>
-<h4 id="加载模块"><a href="#加载模块" class="headerlink" title="加载模块"></a>加载模块</h4><p>使用 <code>require</code> 加载模块</p>
-
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h4 id="模块导出（-module-exports-exports-）"><a href="#模块导出（-module-exports-exports-）" class="headerlink" title="模块导出（ module.exports || exports ）"></a>模块导出（ module.exports || exports ）</h4><p><code>module.exports</code> 属性表示当前模块对外输出的接口，其他文件加载该模块，实际上就是读取 <code>module.exports</code> 变量。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// rocker.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123; <span class="attr">name</span>: <span class="string">'xlslucky'</span> &#125;;</div><div class="line"></div><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">var</span> rocker = <span class="built_in">require</span>(<span class="string">'./rocker.js'</span>);</div><div class="line">rocker <span class="comment">// &#123; name: 'xlslucky' &#125;</span></div></pre></td></tr></table></figure></p>
+<p>Node为每个模块提供一个 <code>exports</code> 变量，指向 <code>module.exports</code> 。这等同在每个模块头部，有一行这样的命令。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports;</div></pre></td></tr></table></figure></p>
+<p>在对外输出模块接口时，可以向 <code>exports</code> 对象添加方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// rocker.js</span></div><div class="line">exports.name = <span class="string">'xlslucky'</span>;</div><div class="line"></div><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">var</span> rocker = <span class="built_in">require</span>(<span class="string">'./rocker.js'</span>);</div><div class="line">rocker <span class="comment">// &#123; name: 'xlslucky' &#125;</span></div></pre></td></tr></table></figure></p>
+<p>切记不能直接将 <code>exports</code> 指向一个值，等于切断了 <code>exports</code> 和 <code>module.exports</code> 之间的联系。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// exports 不再指向 module.exports</span></div><div class="line">exports = <span class="string">'hello world'</span>;</div></pre></td></tr></table></figure></p>
+<p>下面代码， <code>hello</code> 函数无法对外输出， 因为 <code>module.exports</code> 被重新赋值了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">exports.hello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'say hello!'</span>)</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'hello world!'</span>;</div></pre></td></tr></table></figure></p>
+<p>如果模块只对外输出一个单一的值，不能使用 <code>exports</code> , 只能使用 <code>module.exports</code> 输出。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;<span class="built_in">console</span>.log(x)&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果你觉得 <code>exports</code> 和 <code>module.exports</code> 很难分清，那就放弃使用<code>exports</code>, 只使用 <code>module.exports</code> 输出。</p>
+</blockquote>
+<h4 id="加载模块（-require-）"><a href="#加载模块（-require-）" class="headerlink" title="加载模块（ require ）"></a>加载模块（ require ）</h4><p><code>require</code> 基本功能就是，读入并执行一个javascript文件，然后返回该模块的<code>exports</code>对象，如果没有发现指定模块，那就会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
       
     </div>
     
@@ -497,7 +528,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -551,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">2.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模块导出"><span class="nav-number">2.0.1.</span> <span class="nav-text">模块导出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载模块"><span class="nav-number">2.0.2.</span> <span class="nav-text">加载模块</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">2.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模块导出（-module-exports-exports-）"><span class="nav-number">2.0.1.</span> <span class="nav-text">模块导出（ module.exports || exports ）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载模块（-require-）"><span class="nav-number">2.0.2.</span> <span class="nav-text">加载模块（ require ）</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
