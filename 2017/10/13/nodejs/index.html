@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="参考阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http://nqdeng.github.io/7-days-nodejs/  概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析">
+<meta name="description" content="参考module.exports,exports,export和export default,import与require区别与联系 http://www.cnblogs.com/Nutrient-rich/p/7047877.html阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http">
 <meta name="keywords" content="nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nodejs 学习笔记">
 <meta property="og:url" content="http://yoursite.com/2017/10/13/nodejs/index.html">
 <meta property="og:site_name" content="Xlslucky&#39;s Blog">
-<meta property="og:description" content="参考阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http://nqdeng.github.io/7-days-nodejs/  概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析">
+<meta property="og:description" content="参考module.exports,exports,export和export default,import与require区别与联系 http://www.cnblogs.com/Nutrient-rich/p/7047877.html阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-20T15:30:09.000Z">
+<meta property="og:updated_time" content="2017-10-22T12:08:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nodejs 学习笔记">
-<meta name="twitter:description" content="参考阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http://nqdeng.github.io/7-days-nodejs/  概述JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析">
+<meta name="twitter:description" content="参考module.exports,exports,export和export default,import与require区别与联系 http://www.cnblogs.com/Nutrient-rich/p/7047877.html阮一峰 CommonJS规范 http://javascript.ruanyifeng.com/nodejs/module.html7天学会NodeJs http">
 
 
 
@@ -346,7 +346,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  877 字
+                  982 字
                 </span>
               
 
@@ -377,14 +377,14 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody" style="word-break: break-word;">
 
       
       
 
       
         <blockquote>
-<p>参考<br>阮一峰 CommonJS规范 <a href="http://javascript.ruanyifeng.com/nodejs/module.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/nodejs/module.html</a><br>7天学会NodeJs <a href="http://nqdeng.github.io/7-days-nodejs/" target="_blank" rel="external">http://nqdeng.github.io/7-days-nodejs/</a></p>
+<p>参考<br>module.exports,exports,export和export default,import与require区别与联系 <a href="http://www.cnblogs.com/Nutrient-rich/p/7047877.html" target="_blank" rel="external">http://www.cnblogs.com/Nutrient-rich/p/7047877.html</a><br>阮一峰 CommonJS规范 <a href="http://javascript.ruanyifeng.com/nodejs/module.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/nodejs/module.html</a><br>7天学会NodeJs <a href="http://nqdeng.github.io/7-days-nodejs/" target="_blank" rel="external">http://nqdeng.github.io/7-days-nodejs/</a></p>
 </blockquote>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>JS是脚本语言，脚本语言都需要一个解析器才能运行。对于写在HTML页面里的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。<br>每一种解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如运行在浏览器中的JS的用途是操作DOM，浏览器就提供了document之类的内置对象。而运行在NodeJS中的JS的用途是操作磁盘文件或搭建HTTP服务器，NodeJS就相应提供了fs、http等内置对象。</p>
 <p>Node 应用由模块组成，采用 CommonJS 模块规范。<br>每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。</p>
@@ -407,6 +407,13 @@
 <p>npm是随同nodejs一起安装的包管理工具</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 帮助</div><div class="line"><span class="meta">$</span> npm --help || npm -h</div><div class="line"><span class="meta">#</span> 下载第三方包</div><div class="line"><span class="meta">$</span> npm install &lt;pkg&gt;[@&lt;version&gt;]</div><div class="line"><span class="meta">#</span> 全局安装</div><div class="line"><span class="meta">$</span> npm install &lt;pkg&gt; -g</div><div class="line"><span class="meta">#</span> 安装package.json里的依赖包</div><div class="line"><span class="meta">$</span> npm install</div></pre></td></tr></table></figure>
+<p>npm 版本号，语义版本号分为 <code>X.Y.Z</code> 三位，分别代表主版本号、次版本号和补丁版本号。</p>
+<ul>
+<li>如果只是修复bug，需要更新z位。</li>
+<li>如果是更新了功能，但向下兼容，需要更新y位。</li>
+<li>如果有大变动，向下不兼容，需要更新x位。</li>
+</ul>
+
       
     </div>
     
@@ -529,7 +536,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,7 +558,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
