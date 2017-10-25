@@ -15,7 +15,7 @@ tags:
 # 打包编译
 $ hexo clean && hexo g && hexo s
 
-# 提交
+# 提交 (提交之前 必须重新打包编译)
 $ hexo d
 ```
 
