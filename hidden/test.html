@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本">
+<meta name="description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本 问题：">
 <meta name="keywords" content="Tag">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的第一篇文章">
 <meta property="og:url" content="http://yoursite.com/hidden/test.html">
 <meta property="og:site_name" content="Xlslucky&#39;s Blog">
-<meta property="og:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本">
+<meta property="og:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本 问题：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-13T02:37:14.000Z">
+<meta property="og:updated_time" content="2017-10-25T08:24:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的第一篇文章">
-<meta name="twitter:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本">
+<meta name="twitter:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本 问题：">
 
 
 
@@ -272,6 +272,8 @@
 <p><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next主题</a><br><a href="http://zhouhuix.cn/2016/11/24/%E4%BF%AE%E6%94%B9Hexo%E7%9A%84Next%E4%B8%BB%E9%A2%98/" target="_blank" rel="external">修改Hexo的Next主题</a><br><a href="http://blog.csdn.net/w_ngzeqi/article/details/73863543" target="_blank" rel="external">hexo之next主题个性化配置详细教程</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 打包编译</div><div class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</div><div class="line"></div><div class="line"><span class="meta">#</span> 提交</div><div class="line"><span class="meta">$</span> hexo d</div></pre></td></tr></table></figure>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>问题： 安装 hexo-wordcount 报错<br>解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本</p>
+<p>问题：上传图片<br>解决办法：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 安装 hexo-asset-image</div><div class="line"><span class="meta">$</span> npm install https://github.com/CodeFalling/hexo-asset-image --save</div><div class="line"></div><div class="line"><span class="meta">#</span> post_asset_folder: true 设置为true</div><div class="line"></div><div class="line"><span class="meta">$</span> hexo new '&lt;文章名&gt;'</div><div class="line"></div><div class="line"><span class="meta">#</span> 会生成和文章名相同的文件夹</div><div class="line"></div><div class="line"><span class="meta">#</span> ![name](文章名/xxxx.jpg)</div></pre></td></tr></table></figure></p>
+<p>问题：在首页摘要里显示文章图片<br>解决办法：md文章里，使用 <a id="more"></a> 截断<br>举例：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">![object_prototype_1](prototype/object_prototype_1.png)</div><div class="line">&lt;!--more--&gt;</div></pre></td></tr></table></figure></p>
 
         
       </div>
@@ -343,7 +345,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -87,16 +87,16 @@
 <meta property="og:site_name" content="Xlslucky&#39;s Blog">
 <meta property="og:description" content="参考深入理解javascript原型和闭包 http://www.cnblogs.com/wangfupeng1988/p/3977924.html深入分析js中的constructor 和prototype http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html  1. 一切都是对象 (值类型就不是对象) 对象——若干属性的集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_1.png">
-<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_2.png">
-<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_3.png">
-<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_4.png">
-<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_5.png">
-<meta property="og:updated_time" content="2017-10-24T08:19:28.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/10/24/prototype/object_prototype_1.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/24/prototype/object_prototype_2.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/24/prototype/object_prototype_3.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/24/prototype/object_prototype_4.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/24/prototype/object_prototype_5.png">
+<meta property="og:updated_time" content="2017-10-25T08:24:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原型 学习笔记">
 <meta name="twitter:description" content="参考深入理解javascript原型和闭包 http://www.cnblogs.com/wangfupeng1988/p/3977924.html深入分析js中的constructor 和prototype http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html  1. 一切都是对象 (值类型就不是对象) 对象——若干属性的集">
-<meta name="twitter:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_1.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/10/24/prototype/object_prototype_1.png">
 
 
 
@@ -406,19 +406,19 @@
 <ul>
 <li>每个对象都是new Object()创建出来的，<code>o1、o2</code>的<code>__proto__</code>指向<code>创建他们的Object</code>的<code>prototype</code>属性。</li>
 <li><code>Object</code>的<code>prototype</code>有<code>constructor</code>属性，指向<code>function Object(){}</code>这个构造函数。</li>
-<li><p><code>function Object(){}</code>的<code>prototype</code>就是<code>Object.prototype</code>。<br><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_1.png" alt="object_prototype_1"></p>
+<li><p><code>function Object(){}</code>的<code>prototype</code>就是<code>Object.prototype</code>。<br><img src="/2017/10/24/prototype/object_prototype_1.png" alt="object_prototype_1"></p>
 </li>
-<li><p>Object.prototype确实一个特例——它的<strong>proto</strong>指向的是null，切记切记！<br><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_2.png" alt="object_prototype_2"></p>
+<li><p>Object.prototype确实一个特例——它的<strong>proto</strong>指向的是null，切记切记！<br><img src="/2017/10/24/prototype/object_prototype_2.png" alt="object_prototype_2"></p>
 </li>
 </ul>
-<p><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_3.png" alt="object_prototype_3"></p>
-<p><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_4.png" alt="object_prototype_4"></p>
+<p><img src="/2017/10/24/prototype/object_prototype_3.png" alt="object_prototype_3"></p>
+<p><img src="/2017/10/24/prototype/object_prototype_4.png" alt="object_prototype_4"></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 我们在定义函数的时候，函数定义的时候函数本身就会默认有一个prototype的属性</span></div><div class="line"><span class="comment">// 而我们如果用new 运算符来生成一个对象的时候就没有prototype属性，但是这个对象有__proto__属性，指向实例的prototype</span></div><div class="line"></div><div class="line"><span class="comment">// 每个对象都有一个__proto__属性，指向创建该对象的函数的prototype</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Parent.prototype.do = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' can do everthing'</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> child = <span class="keyword">new</span> Parent(<span class="string">'xuls'</span>);</div><div class="line"></div><div class="line"><span class="keyword">typeof</span> child.prototype <span class="comment">// undefine</span></div><div class="line"><span class="keyword">typeof</span> Parent.prototype <span class="comment">// object</span></div><div class="line"></div><div class="line">child.__proto__ == Parent.prototype <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// Parent.prototype 包涵两个属性，一个是constructor，另一个是__proto__</span></div><div class="line"><span class="comment">// constructor就是构造函数Parent</span></div></pre></td></tr></table></figure>
 <h3 id="5-instanceof"><a href="#5-instanceof" class="headerlink" title="5. instanceof"></a>5. instanceof</h3><blockquote>
 <p>typeof 判断简单类型都很清除(string、boolean、number、undefined)，但是引用类型返回值只有(object、function)，不知道他是数组还是对象</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 沿着f1的__proto__、Foo的prototype来找，如果两条线能找到同一引用，那就返回true</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Foo();</div><div class="line">f1 <span class="keyword">instanceof</span> Foo <span class="comment">// true</span></div><div class="line">f1 <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_5.png" alt="object_prototype_5"></p>
+<p><img src="/2017/10/24/prototype/object_prototype_5.png" alt="object_prototype_5"></p>
 <h3 id="6-继承"><a href="#6-继承" class="headerlink" title="6. 继承"></a>6. 继承</h3><blockquote>
 <p>javascript是通过原型链来实现继承</p>
 <p>所有对象的原型链都会找到Object.prototype，因此所有的对象都会有Object.prototype的方法。这就是继承；</p>
@@ -568,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
