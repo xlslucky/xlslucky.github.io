@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="原型," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考深入理解javascript原型和闭包 http://www.cnblogs.com/wangfupeng1988/p/3977924.html深入分析js中的constructor 和prototype http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html  1. 一切都是对象 (值类型就不是对象) 对象——若干属性的集">
+<meta name="keywords" content="原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型 学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/10/24/prototype/index.html">
+<meta property="og:site_name" content="Xlslucky&#39;s Blog">
+<meta property="og:description" content="参考深入理解javascript原型和闭包 http://www.cnblogs.com/wangfupeng1988/p/3977924.html深入分析js中的constructor 和prototype http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html  1. 一切都是对象 (值类型就不是对象) 对象——若干属性的集">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_1.png">
+<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_2.png">
+<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_3.png">
+<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_4.png">
+<meta property="og:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_5.png">
+<meta property="og:updated_time" content="2017-10-24T08:19:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原型 学习笔记">
+<meta name="twitter:description" content="参考深入理解javascript原型和闭包 http://www.cnblogs.com/wangfupeng1988/p/3977924.html深入分析js中的constructor 和prototype http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html  1. 一切都是对象 (值类型就不是对象) 对象——若干属性的集">
+<meta name="twitter:image" content="https://github.com/xlslucky/learning/blob/master/images/object_prototype_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/24/prototype/"/>
+
+
+
+
+
+  <title>原型 学习笔记 | Xlslucky's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xlslucky's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">越努力越幸运</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xlslucky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/17557871?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xlslucky's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">原型 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T16:00:09+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,195 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody" style="word-break: break-word;">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考<br>深入理解javascript原型和闭包 <a href="http://www.cnblogs.com/wangfupeng1988/p/3977924.html" target="_blank" rel="external">http://www.cnblogs.com/wangfupeng1988/p/3977924.html</a><br>深入分析js中的constructor 和prototype <a href="http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html" target="_blank" rel="external">http://www.cnblogs.com/yupeng/archive/2012/04/06/2435386.html</a></p>
+</blockquote>
+<h3 id="1-一切都是对象-值类型就不是对象"><a href="#1-一切都是对象-值类型就不是对象" class="headerlink" title="1. 一切都是对象 (值类型就不是对象)"></a>1. 一切都是对象 (值类型就不是对象)</h3><blockquote>
+<p>对象——若干属性的集合。</p>
+</blockquote>
+<p>typeof 输出的几种类型</p>
+<p>基本数据类型 <code>undefined</code>、 <code>string</code>、 <code>number</code>、 <code>boolean</code>、 <code>null</code> &amp; 复杂数据类型 <code>object</code></p>
+<p>基本类型 <code>undefined</code>、 <code>string</code>、 <code>number</code>、 <code>boolean</code>、 <code>null</code> &amp; 引用类型 <code>object</code>、 <code>array</code>、 <code>function</code>、 <code>regexp</code> …</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 基本类型</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> name) <span class="comment">// undefined</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="string">'xlsluck'</span>) <span class="comment">// string</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="number">22</span>) <span class="comment">// number</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">true</span>) <span class="comment">// boolean</span></div><div class="line"><span class="comment">// 引用类型</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;) <span class="comment">// function</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// object</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> &#123;<span class="attr">name</span>: <span class="string">'xlslucky'</span>&#125;) <span class="comment">// object</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>) <span class="comment">// object</span></div></pre></td></tr></table></figure>
+<h3 id="2-函数和对象的关系"><a href="#2-函数和对象的关系" class="headerlink" title="2.函数和对象的关系"></a>2.函数和对象的关系</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数就是对象的一种 </span></div><div class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; &#125;;</div><div class="line">fn <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></div><div class="line"><span class="keyword">typeof</span> fn <span class="comment">// function</span></div><div class="line"></div><div class="line"><span class="comment">// 对象可以通过函数来创建</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'小呀嘛小二郎'</span>;</div><div class="line">  <span class="keyword">this</span>.sex = <span class="string">'boy'</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn1 = <span class="keyword">new</span> Fn();</div><div class="line">fn1.name <span class="comment">// '小呀嘛小二郎'</span></div><div class="line">fn1.sex <span class="comment">// 'boy'</span></div><div class="line"></div><div class="line"><span class="comment">// 这是创建对象、数组的 语法糖</span></div><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>: <span class="string">'小呀嘛小二郎'</span>&#125;</div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+<h3 id="3-prototype-原型"><a href="#3-prototype-原型" class="headerlink" title="3. prototype 原型"></a>3. prototype 原型</h3><blockquote>
+<p>每个函数都有一个prototype, 每个对象都有一个<strong>proto</strong></p>
+</blockquote>
+<ul>
+<li>每个对象都是new Object()创建出来的，<code>o1、o2</code>的<code>__proto__</code>指向<code>创建他们的Object</code>的<code>prototype</code>属性。</li>
+<li><code>Object</code>的<code>prototype</code>有<code>constructor</code>属性，指向<code>function Object(){}</code>这个构造函数。</li>
+<li><p><code>function Object(){}</code>的<code>prototype</code>就是<code>Object.prototype</code>。<br><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_1.png" alt="object_prototype_1"></p>
+</li>
+<li><p>Object.prototype确实一个特例——它的<strong>proto</strong>指向的是null，切记切记！<br><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_2.png" alt="object_prototype_2"></p>
+</li>
+</ul>
+<p><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_3.png" alt="object_prototype_3"></p>
+<p><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_4.png" alt="object_prototype_4"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 我们在定义函数的时候，函数定义的时候函数本身就会默认有一个prototype的属性</span></div><div class="line"><span class="comment">// 而我们如果用new 运算符来生成一个对象的时候就没有prototype属性，但是这个对象有__proto__属性，指向实例的prototype</span></div><div class="line"></div><div class="line"><span class="comment">// 每个对象都有一个__proto__属性，指向创建该对象的函数的prototype</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Parent.prototype.do = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' can do everthing'</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> child = <span class="keyword">new</span> Parent(<span class="string">'xuls'</span>);</div><div class="line"></div><div class="line"><span class="keyword">typeof</span> child.prototype <span class="comment">// undefine</span></div><div class="line"><span class="keyword">typeof</span> Parent.prototype <span class="comment">// object</span></div><div class="line"></div><div class="line">child.__proto__ == Parent.prototype <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// Parent.prototype 包涵两个属性，一个是constructor，另一个是__proto__</span></div><div class="line"><span class="comment">// constructor就是构造函数Parent</span></div></pre></td></tr></table></figure>
+<h3 id="5-instanceof"><a href="#5-instanceof" class="headerlink" title="5. instanceof"></a>5. instanceof</h3><blockquote>
+<p>typeof 判断简单类型都很清除(string、boolean、number、undefined)，但是引用类型返回值只有(object、function)，不知道他是数组还是对象</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 沿着f1的__proto__、Foo的prototype来找，如果两条线能找到同一引用，那就返回true</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Foo();</div><div class="line">f1 <span class="keyword">instanceof</span> Foo <span class="comment">// true</span></div><div class="line">f1 <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p><img src="https://github.com/xlslucky/learning/blob/master/images/object_prototype_5.png" alt="object_prototype_5"></p>
+<h3 id="6-继承"><a href="#6-继承" class="headerlink" title="6. 继承"></a>6. 继承</h3><blockquote>
+<p>javascript是通过原型链来实现继承</p>
+<p>所有对象的原型链都会找到Object.prototype，因此所有的对象都会有Object.prototype的方法。这就是继承；</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Foo();</div><div class="line">f1.a = <span class="number">10</span>;</div><div class="line">Foo.prototype.a = <span class="number">100</span>;</div><div class="line">Foo.prototype.b = <span class="number">200</span>;</div><div class="line"><span class="comment">// 访问一个对象的属性时，先在基本属性中查找，如果没有，再沿着__proto__这条链向上找，这就是原型链。</span></div><div class="line">f1.a <span class="comment">// 10</span></div><div class="line">f1.b <span class="comment">// 200</span></div><div class="line"></div><div class="line"><span class="comment">// 验证是否是基本属性</span></div><div class="line"><span class="comment">// hasOwnProperty 这个方法在 Object.prototype里 </span></div><div class="line">f1.hasOwnProperty(<span class="string">'a'</span>) <span class="comment">// true</span></div><div class="line">f1.hasOwnProperty(<span class="string">'b'</span>) <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>每个函数都有call、apply方法，都有length、caller等属性，函数由Function函数创建，继承了Function.prototype的方法。</p>
+<h3 id="8-执行上下文、this"><a href="#8-执行上下文、this" class="headerlink" title="8. 执行上下文、this"></a>8. 执行上下文、this</h3><p><strong>this 永远指向最后调用它的那个对象</strong></p>
+<p><strong>this 永远指向最后调用它的那个对象</strong></p>
+<p><strong>this 永远指向最后调用它的那个对象</strong></p>
+<p>准备工作</p>
+<ul>
+<li>变量、函数表达式 —- 变量声明，默认赋值undefined</li>
+<li>this —- 赋值</li>
+<li>函数声明 —- 赋值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a) <span class="comment">// Uncaught ReferenceError: a is not defined</span></div><div class="line">....</div><div class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></div><div class="line"><span class="keyword">var</span> a;</div><div class="line">....</div><div class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined</span></div><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">....</div><div class="line"><span class="built_in">console</span>.log(f1) <span class="comment">// undefined</span></div><div class="line"><span class="keyword">var</span> f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; <span class="comment">// 函数表达式</span></div><div class="line">....</div><div class="line"><span class="built_in">console</span>.log(f2) <span class="comment">// function f2()&#123;&#125;</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;&#125; <span class="comment">// 函数声明</span></div></pre></td></tr></table></figure>
+<h4 id="8-1-this-–-构造函数"><a href="#8-1-this-–-构造函数" class="headerlink" title="8.1 this – 构造函数"></a>8.1 this – 构造函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'胥'</span>;</div><div class="line">  <span class="keyword">this</span>.age = <span class="string">'22'</span>;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)        <span class="comment">// Foo &#123; name: '胥', age: '22'&#125;</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Foo()</div><div class="line"></div><div class="line">....</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'胥'</span>;</div><div class="line">  <span class="keyword">this</span>.age = <span class="string">'22'</span>;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)        <span class="comment">// Window &#123; .... &#125;</span></div><div class="line">&#125;</div><div class="line">Foo();</div></pre></td></tr></table></figure>
+<h4 id="8-2-this-–-函数作为对象的一个属性"><a href="#8-2-this-–-函数作为对象的一个属性" class="headerlink" title="8.2 this – 函数作为对象的一个属性"></a>8.2 this – 函数作为对象的一个属性</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 如果函数作为对象的一个属性时，并作为对象的属性被调用，函数的this指向obj</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  x: <span class="number">10</span>,</div><div class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)      <span class="comment">// obj &#123; x: 10, fn: function()&#123;....&#125; &#125;</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x)    <span class="comment">// 10</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.fn()</div><div class="line"></div><div class="line"><span class="comment">// 当函数不作为对象的属性被调用</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  x: <span class="number">10</span>,</div><div class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)      <span class="comment">// Window &#123; .... &#125;</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x)    <span class="comment">// undefined</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn1 = obj.fn;</div><div class="line">fn1()</div><div class="line"><span class="comment">// 如果函数被赋值到另一个变量中，并没有作为obj的属性被调用，那么this指向window</span></div></pre></td></tr></table></figure>
+<h4 id="8-3-this-–-函数用call或者apply调用"><a href="#8-3-this-–-函数用call或者apply调用" class="headerlink" title="8.3 this – 函数用call或者apply调用"></a>8.3 this – 函数用call或者apply调用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  x: <span class="number">10</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">Foo()     <span class="comment">// Window &#123; .... &#125;</span></div><div class="line"></div><div class="line">Foo.call(obj)  <span class="comment">// obj &#123; x: 10 &#125;</span></div></pre></td></tr></table></figure>
+<h4 id="8-4-this-–-全局-amp-调用普通函数"><a href="#8-4-this-–-全局-amp-调用普通函数" class="headerlink" title="8.4 this – 全局 &amp; 调用普通函数"></a>8.4 this – 全局 &amp; 调用普通函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 普通函数在调用时，其中的this也都是window。</span></div><div class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)      <span class="comment">// Window &#123; .... &#125;</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.x)    <span class="comment">// 10</span></div><div class="line">&#125;</div><div class="line">fn()</div><div class="line"></div><div class="line"><span class="comment">// 虽然函数f是在obj.fn内部定义， 但他仍然是普通函数，this指向window</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  x: <span class="number">10</span>,</div><div class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>)       <span class="comment">// Window &#123; .... &#125;</span></div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.x)     <span class="comment">// undedined</span></div><div class="line">    &#125;</div><div class="line">    f()</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.fn()</div></pre></td></tr></table></figure>
+<h3 id="9-执行上下文栈"><a href="#9-执行上下文栈" class="headerlink" title="9. 执行上下文栈"></a>9. 执行上下文栈</h3><blockquote>
+<p>没看懂</p>
+</blockquote>
+<h3 id="10-作用域"><a href="#10-作用域" class="headerlink" title="10. 作用域"></a>10. 作用域</h3><blockquote>
+<p>es5及之前都没有块级作用域，也就是 “{}” ，除了全局作用域，只有函数才能创建作用域。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/原型/" rel="tag"><i class="fa fa-fw fa-tags"></i> 原型</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/22/webpack-学习笔记/" rel="next" title="webpack 学习笔记">
+                <i class="fa fa-chevron-left"></i> webpack 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars1.githubusercontent.com/u/17557871?v=4&s=460"
+                alt="xlslucky" />
+            
+              <p class="site-author-name" itemprop="name">xlslucky</p>
+              <p class="site-description motion-element" itemprop="description">一个有梦想的小前端</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-一切都是对象-值类型就不是对象"><span class="nav-number">1.</span> <span class="nav-text">1. 一切都是对象 (值类型就不是对象)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-函数和对象的关系"><span class="nav-number">2.</span> <span class="nav-text">2.函数和对象的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-prototype-原型"><span class="nav-number">3.</span> <span class="nav-text">3. prototype 原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-instanceof"><span class="nav-number">4.</span> <span class="nav-text">5. instanceof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-继承"><span class="nav-number">5.</span> <span class="nav-text">6. 继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-执行上下文、this"><span class="nav-number">6.</span> <span class="nav-text">8. 执行上下文、this</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-this-–-构造函数"><span class="nav-number">6.1.</span> <span class="nav-text">8.1 this – 构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-this-–-函数作为对象的一个属性"><span class="nav-number">6.2.</span> <span class="nav-text">8.2 this – 函数作为对象的一个属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-this-–-函数用call或者apply调用"><span class="nav-number">6.3.</span> <span class="nav-text">8.3 this – 函数用call或者apply调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-this-–-全局-amp-调用普通函数"><span class="nav-number">6.4.</span> <span class="nav-text">8.4 this – 全局 & 调用普通函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-执行上下文栈"><span class="nav-number">7.</span> <span class="nav-text">9. 执行上下文栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-作用域"><span class="nav-number">8.</span> <span class="nav-text">10. 作用域</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xlslucky</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
