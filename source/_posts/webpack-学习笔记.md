@@ -8,6 +8,7 @@ tags:
 > webpack 中文指南 [https://webpack.toobug.net/zh-cn/](https://webpack.toobug.net/zh-cn/)
 > webpack 从入门到工程实践 [http://dwz.cn/6tw4XA](http://dwz.cn/6tw4XA)
 > webpack 优秀文章 [https://github.com/webpack-china/awesome-webpack-cn](https://github.com/webpack-china/awesome-webpack-cn)
+> webpack 2.2中文文档 [http://www.css88.com/doc/webpack2/](http://www.css88.com/doc/webpack2/)
 
 看webpack也有一段时间，目前也只是会一些简单的配置
 先来一段示例
