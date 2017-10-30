@@ -5,14 +5,18 @@ tags:
     - webpack
 ---
 > 参考
+> webpack 2.2中文文档 [http://www.css88.com/doc/webpack2/](http://www.css88.com/doc/webpack2/)
 > webpack 中文指南 [https://webpack.toobug.net/zh-cn/](https://webpack.toobug.net/zh-cn/)
 > webpack 从入门到工程实践 [http://dwz.cn/6tw4XA](http://dwz.cn/6tw4XA)
 > webpack 优秀文章 [https://github.com/webpack-china/awesome-webpack-cn](https://github.com/webpack-china/awesome-webpack-cn)
-> webpack 2.2中文文档 [http://www.css88.com/doc/webpack2/](http://www.css88.com/doc/webpack2/)
 
-看webpack也有一段时间，目前也只是会一些简单的配置
-先来一段示例
+### 什么是webpack?
+webpack是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。通过 loader 的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。
 
+### webpack和gulp的区别？
+webpack是模块化解决方案，gulp是构建工具。
+
+来一段示例
 ```js
 var webpack = require('webpack');
 var path = require('path');
@@ -71,8 +75,111 @@ module.exports = {
         warnings: false
       }
     }),
+    // 跳过编译时出错的代码并记录，使编译后运行时的包不会发生错误
+    new webpack.NoErrorsPlugin(),
     // 提取公共模块
     new webpack.optimize.CommonsChunkPlugin('common')
+  ]
+}
+```
+
+### 配置
+
+#### 入口(entry)
+
+webpack.config.js
+```js
+// 简写
+module.exports = {
+  entry: './src/index.js'
+}
+// 等于
+module.exports = {
+  entry: {
+    main: './src/index.js'
+  }
+}
+```
+
+#### 输出(output)
+
+* output.filename 打包之后的文件名 推荐 `main.js`、`bundle.js`、`index.js`
+  * [name]
+  * [hash]
+  * [chunkhash]
+* output.path 打包之后存放的路径，为 **绝对路径**
+* output.publicPath **搞不懂**
+* output.chunkFilename **搞不懂**
+
+webpack.config.js
+```js
+module.exports = {
+  output: {
+    filename: 'bundle.js',
+    path: '/public'
+  }
+}
+```
+
+#### 加载器(loaders)
+> loader对应用程序中资源文件进行转换。
+
+**安装**
+```shell
+$ npm install css-loader --save-dev    # 加载css文件
+$ npm install ts-loader --save-dev     # TypeScript转化为JavaScript
+```
+
+webpack.config.js
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {loader: 'style-loader'},
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.ts$/,
+        use: ['ts-loader']
+      }
+    ]
+  }
+}
+```
+
+#### 插件(plugins)
+> 插件目的在于解决loader无法解决的事。
+
+webpack.config.js
+```js
+var webpack = require('webpack');           // 访问内置插件
+var path = require('path');
+
+module,exports = {
+  entry: './src',
+  output: {
+    filename: 'app.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: ['babel-loader']
+      }
+    ]
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
   ]
 }
 ```
