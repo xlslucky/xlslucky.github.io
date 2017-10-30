@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="参考webpack 中文指南 https://webpack.toobug.net/zh-cn/webpack 从入门到工程实践 http://dwz.cn/6tw4XAwebpack 优秀文章 https://github.com/webpack-china/awesome-webpack-cnwebpack 2.2中文文档 http://www.css88.com/doc/webpack2/">
+<meta name="description" content="参考webpack 2.2中文文档 http://www.css88.com/doc/webpack2/webpack 中文指南 https://webpack.toobug.net/zh-cn/webpack 从入门到工程实践 http://dwz.cn/6tw4XAwebpack 优秀文章 https://github.com/webpack-china/awesome-webpack-cn">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack 学习笔记">
 <meta property="og:url" content="http://yoursite.com/2017/10/22/webpack-学习笔记/index.html">
 <meta property="og:site_name" content="Xlslucky&#39;s Blog">
-<meta property="og:description" content="参考webpack 中文指南 https://webpack.toobug.net/zh-cn/webpack 从入门到工程实践 http://dwz.cn/6tw4XAwebpack 优秀文章 https://github.com/webpack-china/awesome-webpack-cnwebpack 2.2中文文档 http://www.css88.com/doc/webpack2/">
+<meta property="og:description" content="参考webpack 2.2中文文档 http://www.css88.com/doc/webpack2/webpack 中文指南 https://webpack.toobug.net/zh-cn/webpack 从入门到工程实践 http://dwz.cn/6tw4XAwebpack 优秀文章 https://github.com/webpack-china/awesome-webpack-cn">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-26T07:54:31.000Z">
+<meta property="og:updated_time" content="2017-10-27T07:32:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack 学习笔记">
-<meta name="twitter:description" content="参考webpack 中文指南 https://webpack.toobug.net/zh-cn/webpack 从入门到工程实践 http://dwz.cn/6tw4XAwebpack 优秀文章 https://github.com/webpack-china/awesome-webpack-cnwebpack 2.2中文文档 http://www.css88.com/doc/webpack2/">
+<meta name="twitter:description" content="参考webpack 2.2中文文档 http://www.css88.com/doc/webpack2/webpack 中文指南 https://webpack.toobug.net/zh-cn/webpack 从入门到工程实践 http://dwz.cn/6tw4XAwebpack 优秀文章 https://github.com/webpack-china/awesome-webpack-cn">
 
 
 
@@ -324,7 +324,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  262 字
+                  425 字
                 </span>
               
 
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -362,10 +362,12 @@
 
       
         <blockquote>
-<p>参考<br>webpack 中文指南 <a href="https://webpack.toobug.net/zh-cn/" target="_blank" rel="external">https://webpack.toobug.net/zh-cn/</a><br>webpack 从入门到工程实践 <a href="http://dwz.cn/6tw4XA" target="_blank" rel="external">http://dwz.cn/6tw4XA</a><br>webpack 优秀文章 <a href="https://github.com/webpack-china/awesome-webpack-cn" target="_blank" rel="external">https://github.com/webpack-china/awesome-webpack-cn</a><br>webpack 2.2中文文档 <a href="http://www.css88.com/doc/webpack2/" target="_blank" rel="external">http://www.css88.com/doc/webpack2/</a></p>
+<p>参考<br>webpack 2.2中文文档 <a href="http://www.css88.com/doc/webpack2/" target="_blank" rel="external">http://www.css88.com/doc/webpack2/</a><br>webpack 中文指南 <a href="https://webpack.toobug.net/zh-cn/" target="_blank" rel="external">https://webpack.toobug.net/zh-cn/</a><br>webpack 从入门到工程实践 <a href="http://dwz.cn/6tw4XA" target="_blank" rel="external">http://dwz.cn/6tw4XA</a><br>webpack 优秀文章 <a href="https://github.com/webpack-china/awesome-webpack-cn" target="_blank" rel="external">https://github.com/webpack-china/awesome-webpack-cn</a></p>
 </blockquote>
-<p>看webpack也有一段时间，目前也只是会一些简单的配置<br>先来一段示例</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  devtool: <span class="string">'source-map'</span>,</div><div class="line">  entry: <span class="string">'./src'</span>,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + <span class="string">'/dist/'</span>,</div><div class="line">    filename: <span class="string">'[name].js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">module</span>: &#123;</div><div class="line">    <span class="comment">/*loaders: [</span></div><div class="line"><span class="comment">      &#123;</span></div><div class="line"><span class="comment">        test: /\.jsx?$/,</span></div><div class="line"><span class="comment">        loader: 'babel-loader'</span></div><div class="line"><span class="comment">      &#125;</span></div><div class="line"><span class="comment">    ]*/</span></div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use: [<span class="string">'babel-loader'</span>],</div><div class="line">        <span class="comment">/*use: &#123;</span></div><div class="line"><span class="comment">          loader: "babel-loader",</span></div><div class="line"><span class="comment">          options: &#123;</span></div><div class="line"><span class="comment">            presets: ["es2015", "react"]</span></div><div class="line"><span class="comment">          &#125;</span></div><div class="line"><span class="comment">        &#125;*/</span></div><div class="line">      &#125;,&#123;</div><div class="line">        test: <span class="regexp">/\.css$/</span>,</div><div class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  externals: &#123;</div><div class="line">    <span class="comment">// 声明一个外部依赖</span></div><div class="line">    <span class="string">'react'</span>: <span class="string">'window.React'</span>,</div><div class="line">    <span class="string">'react-dom'</span>: <span class="string">'window.ReactDOM'</span>,</div><div class="line">    <span class="string">'react-router'</span>: <span class="string">'window.ReactRouter'</span>,</div><div class="line">  &#125;,</div><div class="line">  resolve: &#123;</div><div class="line">  <span class="comment">// 文件扩展名，写明以后就不需要每个文件写后缀</span></div><div class="line">    extensions: [<span class="string">'.js'</span>, <span class="string">'.css'</span>, <span class="string">'.json'</span>],</div><div class="line">  <span class="comment">// 路径别名，比如这里可以使用 css 指向 static/css 路径</span></div><div class="line">    alias: &#123;</div><div class="line">      <span class="string">'@'</span>: __dirname + <span class="string">'/src'</span>,</div><div class="line">      <span class="string">'css'</span>: __dirname + <span class="string">'/assets/css'</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// 压缩js代码 加入了这个插件之后，编译的速度会明显变慢，所以一般只在生产环境启用。</span></div><div class="line">    <span class="comment">// warnings: false默认false</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      compress: &#123;</div><div class="line">        warnings: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="comment">// 提取公共模块</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="string">'common'</span>)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack?"></a>什么是webpack?</h3><p>webpack是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。通过 loader 的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。</p>
+<h3 id="webpack和gulp的区别？"><a href="#webpack和gulp的区别？" class="headerlink" title="webpack和gulp的区别？"></a>webpack和gulp的区别？</h3><p>webpack是模块化解决方案，gulp是构建工具。</p>
+<p>来一段示例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  devtool: <span class="string">'source-map'</span>,</div><div class="line">  entry: <span class="string">'./src'</span>,</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + <span class="string">'/dist/'</span>,</div><div class="line">    filename: <span class="string">'[name].js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">module</span>: &#123;</div><div class="line">    <span class="comment">/*loaders: [</span></div><div class="line"><span class="comment">      &#123;</span></div><div class="line"><span class="comment">        test: /\.jsx?$/,</span></div><div class="line"><span class="comment">        loader: 'babel-loader'</span></div><div class="line"><span class="comment">      &#125;</span></div><div class="line"><span class="comment">    ]*/</span></div><div class="line">    rules: [</div><div class="line">      &#123;</div><div class="line">        test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">        exclude: <span class="regexp">/node_modules/</span>,</div><div class="line">        use: [<span class="string">'babel-loader'</span>],</div><div class="line">        <span class="comment">/*use: &#123;</span></div><div class="line"><span class="comment">          loader: "babel-loader",</span></div><div class="line"><span class="comment">          options: &#123;</span></div><div class="line"><span class="comment">            presets: ["es2015", "react"]</span></div><div class="line"><span class="comment">          &#125;</span></div><div class="line"><span class="comment">        &#125;*/</span></div><div class="line">      &#125;,&#123;</div><div class="line">        test: <span class="regexp">/\.css$/</span>,</div><div class="line">        use: [<span class="string">'style-loader'</span>, <span class="string">'css-loader'</span>]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  externals: &#123;</div><div class="line">    <span class="comment">// 声明一个外部依赖</span></div><div class="line">    <span class="string">'react'</span>: <span class="string">'window.React'</span>,</div><div class="line">    <span class="string">'react-dom'</span>: <span class="string">'window.ReactDOM'</span>,</div><div class="line">    <span class="string">'react-router'</span>: <span class="string">'window.ReactRouter'</span>,</div><div class="line">  &#125;,</div><div class="line">  resolve: &#123;</div><div class="line">  <span class="comment">// 文件扩展名，写明以后就不需要每个文件写后缀</span></div><div class="line">    extensions: [<span class="string">'.js'</span>, <span class="string">'.css'</span>, <span class="string">'.json'</span>],</div><div class="line">  <span class="comment">// 路径别名，比如这里可以使用 css 指向 static/css 路径</span></div><div class="line">    alias: &#123;</div><div class="line">      <span class="string">'@'</span>: __dirname + <span class="string">'/src'</span>,</div><div class="line">      <span class="string">'css'</span>: __dirname + <span class="string">'/assets/css'</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    <span class="comment">// 压缩js代码 加入了这个插件之后，编译的速度会明显变慢，所以一般只在生产环境启用。</span></div><div class="line">    <span class="comment">// warnings: false默认false</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</div><div class="line">      compress: &#123;</div><div class="line">        warnings: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="comment">// 跳过编译时出错的代码并记录，使编译后运行时的包不会发生错误</span></div><div class="line">    <span class="keyword">new</span> webpack.NoErrorsPlugin(),</div><div class="line">    <span class="comment">// 提取公共模块</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="string">'common'</span>)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="入口-entry"><a href="#入口-entry" class="headerlink" title="入口(entry)"></a>入口(entry)</h4>
       
     </div>
     
@@ -459,8 +461,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +545,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是webpack"><span class="nav-number">1.</span> <span class="nav-text">什么是webpack?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack和gulp的区别？"><span class="nav-number">2.</span> <span class="nav-text">webpack和gulp的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#入口-entry"><span class="nav-number">3.1.</span> <span class="nav-text">入口(entry)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
