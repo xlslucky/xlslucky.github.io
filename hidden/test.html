@@ -12,6 +12,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
+<script>
+  (function(){
+    if(''){
+      if (prompt('请输入文章密码') !== ''){
+        alert('密码错误！');
+        history.back();
+      }
+    }
+  })();
+</script>
+
 
 
 
@@ -79,18 +90,18 @@
 
 
 
-<meta name="description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交 (提交之前 必须重新打包编译)$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wor">
+<meta name="description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程设置密码 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交 (提交之前 必须重新打包编译)$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo">
 <meta name="keywords" content="Tag">
 <meta property="og:type" content="website">
 <meta property="og:title" content="我的第一篇文章">
 <meta property="og:url" content="http://yoursite.com/hidden/test.html">
 <meta property="og:site_name" content="Xlslucky&#39;s Blog">
-<meta property="og:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交 (提交之前 必须重新打包编译)$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wor">
+<meta property="og:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程设置密码 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交 (提交之前 必须重新打包编译)$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-25T09:38:53.000Z">
+<meta property="og:updated_time" content="2017-10-31T10:15:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的第一篇文章">
-<meta name="twitter:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交 (提交之前 必须重新打包编译)$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo-wor">
+<meta name="twitter:description" content="Hexo 博客搭建指南 Next主题修改Hexo的Next主题hexo之next主题个性化配置详细教程设置密码 12345# 打包编译$ hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s# 提交 (提交之前 必须重新打包编译)$ hexo d 其他问题问题： 安装 hexo-wordcount 报错解决办法： nodejs7.6之前版本 需要下载hexo">
 
 
 
@@ -269,7 +280,7 @@
         
         
           <p><a href="https://github.com/limedroid/HexoLearning" target="_blank" rel="external">Hexo 博客搭建指南</a></p>
-<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next主题</a><br><a href="http://zhouhuix.cn/2016/11/24/%E4%BF%AE%E6%94%B9Hexo%E7%9A%84Next%E4%B8%BB%E9%A2%98/" target="_blank" rel="external">修改Hexo的Next主题</a><br><a href="http://blog.csdn.net/w_ngzeqi/article/details/73863543" target="_blank" rel="external">hexo之next主题个性化配置详细教程</a></p>
+<p><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next主题</a><br><a href="http://zhouhuix.cn/2016/11/24/%E4%BF%AE%E6%94%B9Hexo%E7%9A%84Next%E4%B8%BB%E9%A2%98/" target="_blank" rel="external">修改Hexo的Next主题</a><br><a href="http://blog.csdn.net/w_ngzeqi/article/details/73863543" target="_blank" rel="external">hexo之next主题个性化配置详细教程</a><br><a href="http://www.jianshu.com/p/a2330937de6c" target="_blank" rel="external">设置密码</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 打包编译</div><div class="line"><span class="meta">$</span> hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</div><div class="line"></div><div class="line"><span class="meta">#</span> 提交 (提交之前 必须重新打包编译)</div><div class="line"><span class="meta">$</span> hexo d</div></pre></td></tr></table></figure>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>问题： 安装 hexo-wordcount 报错<br>解决办法： nodejs7.6之前版本 需要下载hexo-wordcount@2.x版本</p>
 <p>问题：上传图片<br>解决办法：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 安装 hexo-asset-image</div><div class="line"><span class="meta">$</span> npm install https://github.com/CodeFalling/hexo-asset-image --save</div><div class="line"></div><div class="line"><span class="meta">#</span> post_asset_folder: true 设置为true</div><div class="line"></div><div class="line"><span class="meta">$</span> hexo new '&lt;文章名&gt;'</div><div class="line"></div><div class="line"><span class="meta">#</span> 会生成和文章名相同的文件夹</div><div class="line"></div><div class="line"><span class="meta">#</span> ![name](文章名/xxxx.jpg)</div></pre></td></tr></table></figure></p>
@@ -346,7 +357,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -368,7 +379,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
