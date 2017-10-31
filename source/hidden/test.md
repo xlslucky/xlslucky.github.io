@@ -10,6 +10,7 @@ tags:
 [Next主题](http://theme-next.iissnan.com/)
 [修改Hexo的Next主题](http://zhouhuix.cn/2016/11/24/%E4%BF%AE%E6%94%B9Hexo%E7%9A%84Next%E4%B8%BB%E9%A2%98/)
 [hexo之next主题个性化配置详细教程](http://blog.csdn.net/w_ngzeqi/article/details/73863543)
+[设置密码](http://www.jianshu.com/p/a2330937de6c)
 
 ```shell
 # 打包编译
