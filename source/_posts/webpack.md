@@ -57,8 +57,12 @@ module.exports = {
           }
         }*/
       },{
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        // webpack按照从右到左的顺序加载loader
+        // less-loader 将 less编译成css
+        // css-loader 处理css文件中的url等
+        // style-loader 将css插入到页面的style标签
+        test: /\.(less|css)$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
   },
@@ -121,8 +125,8 @@ module.exports = {
   * [chunkhash]         *（多个文件打包，只有改变的那个文件才会再生成哈希码）*
 
 2. output.path 打包之后存放的路径，为 `绝对路径`
-3. output.publicPath **搞不懂**
-4. output.chunkFilename **搞不懂**
+3. output.publicPath 按需加载、静态资源的路径
+4. output.chunkFilename 按需加载的文件名
 
 webpack.config.js
 ```js
@@ -176,6 +180,24 @@ module.exports = {
 }
 ```
 
+## 解析(resolve)
+
+webpack.config.js
+```js
+module.exports = {
+  resolve: {
+    // 设置别名
+    alias: {
+      @: path.resolve(__dirname, 'src')
+    },
+    // 自动解析扩展名
+    extensions: [".js", ".json"],
+    // 告诉webpack，解析模块时搜索的目录, 前者优先于后者
+    modules: [path.resolve(__dirname, "src"), "node_modules"]
+  }
+}
+```
+
 ## 插件(plugins)
 > 插件目的在于解决loader无法解决的事。
 
@@ -184,7 +206,7 @@ webpack.config.js
 var webpack = require('webpack');           // 访问内置插件
 var path = require('path');
 
-module,exports = {
+module.exports = {
   entry: './src',
   output: {
     filename: 'app.js',
@@ -199,7 +221,21 @@ module,exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('common')
   ]
+}
+```
+
+## 扩展(externals)
+
+webpack.config.js
+```js
+module.exports = {
+  // 声明一个外部依赖
+  externals: {
+    jquery: 'jQuery',
+    react: 'window.React'
+  }
 }
 ```
