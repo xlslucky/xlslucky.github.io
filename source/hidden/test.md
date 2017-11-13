@@ -52,3 +52,10 @@ $ hexo new '<文章名>'
 
 问题：换了台电脑，如何继续写文章
 解决办法：`_config.yml` 里 `deploy - branch` 设置为 `master`，新建一个分支 提交 没打包之前的代码
+
+问题：报错
+```shell
+ERROR Local hexo not found in ~/project/amateur/my-github/xlslucky.github.io
+ERROR Try running: 'npm install hexo --save'
+```
+解决办法：`rm -rf node_modules && npm i` 
