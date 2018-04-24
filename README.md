@@ -5,6 +5,11 @@
 [hexo之next主题个性化配置详细教程](http://blog.csdn.net/w_ngzeqi/article/details/73863543)
 
 ```shell
+# 换了电脑需要安装主题
+$ git clone https://github.com/theme-next/hexo-theme-next themes/next
+```
+
+```shell
 # 打包编译
 $ hexo clean && hexo g && hexo s
 
